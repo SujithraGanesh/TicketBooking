@@ -7,6 +7,6 @@ import com.scheduler.entity.Train;
 
 public interface TrainInfoRepository extends JpaRepository<Train, Long>{
 
-	@Query(value="select t.* from train t where t.seats not in (select seat_no from seat) limit 1",nativeQuery = true)
+	@Query(value="select t.* from train t except (select t.* from train t join seat s on s.seat_no=t.seats and s.section=t.section) limit 1",nativeQuery = true)
 	Train fetchAvailableSeats();
 }
