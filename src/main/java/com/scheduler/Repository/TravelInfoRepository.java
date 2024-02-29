@@ -10,7 +10,7 @@ import com.scheduler.entity.TravelInfo;
 @Repository
 public interface TravelInfoRepository extends JpaRepository<TravelInfo, Long> {
 
-	@Query("select t from TravelInfo t join t.user u where u.id=:userId")
+	@Query("select t from TravelInfo t join user u where u.id=:userId")
 	TravelInfo findByUserId(@Param("userId") long userId);
 	
 
